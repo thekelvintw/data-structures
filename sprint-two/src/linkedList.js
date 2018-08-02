@@ -9,8 +9,8 @@ var LinkedList = function() {
    // var node = Node(value);
    var node = Node(value);
       if (!list.head) {
-        list.head = node 
-        list.tail = node 
+        list.head = node; 
+        list.tail = node; 
       } else {
         list.tail.next = node;
         list.tail = node ;
@@ -18,12 +18,15 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
-
+      var firstNode = list.head
+      list.head = firstNode.next
+      return firstNode.value
   };
 
   list.contains = function(target) {
   };
-
+  
+  console.log(list)
   return list;  
 
 };
@@ -31,6 +34,7 @@ var LinkedList = function() {
 var Node = function(value) {
   var node = {};
   node.value = value;
+  node.counter = this.counter;
   node.next = null;//maybe need to change to link to next node
   this.counter++;
   
