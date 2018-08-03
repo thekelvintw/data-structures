@@ -7,7 +7,7 @@ var Tree = function( value) {
   _.extend(newTree, treeMethods);
   
   // newTree.addChild();
-console.log(newTree)
+// console.log('target',newTree)
   return newTree;
 };
 
@@ -19,18 +19,46 @@ treeMethods.addChild = function(value) {
 
 
 treeMethods.contains = function(target) {
-  // var currChildren = this.children
-  // if (this.children && this.children[0].value === target){
-  //   return true;
-  // }
-    for (var i=0; i<this.children.length; i++) {
-      if(this.children[i].value === target) {
-      console.log('checking')
-        return true;
-      }     
+ var finder = function(tree) {
+   //check tree.value and see if === target -> return true
+   //if not: look at children array. For each child, run finder
+    if (tree.children.length === 0) {
+        //console.log(tree.children.value)
+        if (tree.value === target) {
+          return true;
+        } else {
+          return false;
+        }       
     }
-    return false 
-  // }
+
+    if (tree.value === target) {
+      return true;
+    } else {
+        for (var i = 0; i < tree.children.length; i++) {
+         console.log(tree.children[i])
+          if (tree.children[i].value === target) { 
+            return true;
+          } else  {
+              var findIt = finder(tree.children[i])
+              if (findIt===true) {
+                return true
+              }
+          }        
+        }
+    }
+  return false
+  }
+  
+   // for (var i = 0; i < tree.children.length; i++) {
+   //    if(this.children[i].value === target) {
+   //    console.log('checking')
+   //      return true;
+   //    } else {
+   //      this.children.contains(target)
+   //    }    
+   //  }
+
+   return finder(this);
 };
 
 
