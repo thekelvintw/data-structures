@@ -49,6 +49,7 @@ treeMethods.contains = function(target) {
   return false
   }
   
+  //
    // for (var i = 0; i < tree.children.length; i++) {
    //    if(this.children[i].value === target) {
    //    console.log('checking')
