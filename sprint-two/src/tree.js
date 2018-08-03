@@ -35,7 +35,6 @@ treeMethods.contains = function(target) {
       return true;
     } else {
         for (var i = 0; i < tree.children.length; i++) {
-         console.log(tree.children[i])
           if (tree.children[i].value === target) { 
             return true;
           } else  {
