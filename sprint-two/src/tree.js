@@ -19,7 +19,18 @@ treeMethods.addChild = function(value) {
 
 
 treeMethods.contains = function(target) {
-
+  // var currChildren = this.children
+  // if (this.children && this.children[0].value === target){
+  //   return true;
+  // }
+    for (var i=0; i<this.children.length; i++) {
+      if(this.children[i].value === target) {
+      console.log('checking')
+        return true;
+      }     
+    }
+    return false 
+  // }
 };
 
 
