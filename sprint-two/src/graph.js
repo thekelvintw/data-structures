@@ -22,76 +22,69 @@ Graph.prototype.addNode = function(node) {
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
 
-  for(var i =0; i<this.nodeList.length; i++){
-      if(this.nodeList[i] === node){
-       return true;
-  } else {
-    return false;
+  for (var i = 0; i < this.nodeList.length; i++) {
+    if (this.nodeList[i] === node) {
+      return true;
+    } 
   }
-
-  }
+  return false;
 };
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
   
-  for(var i =0; i<this.nodeList.length; i++){
-        if(this.nodeList[i] === node){
-         this.nodeList[i] = undefined;
+  for (var i = 0; i < this.nodeList.length; i++) {
+    if (this.nodeList[i] === node) {
+      this.nodeList.splice(i, 1);
+      for (var i = 0; i < this.edge.length; i++) {
+        if (this.edge[i][0] === node || this.edge[i][1] === node) {
+          this.edge.splice(i, 1);
+        } 
+      }
     } 
   }  
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-   
- var currentEdge = this.edge
-  
-    var hasIt = false;  
-    // var finder = function(){
-     
-  
+// recursion approach
+//   var currentEdge = this.edge;
+//   var hasIt = false;  
     
-      if (currentEdge.length === 0 || currentEdge.length === undefined){
-
-      return false
-      } else {
+//   if (currentEdge.length === 0 || currentEdge.length === undefined) {
+//     return false
+//   } else {
        
-      var finder =function(currentEdge){  
+//   var finder =function(currentEdge){  
 
-       console.log(currentEdge)
-          for(var i =0; i<currentEdge.length; i++){ //[3,4]
+//        console.log(currentEdge)
+//           for(var i =0; i<currentEdge.length; i++){ //[3,4]
      
-            if (currentEdge[i].includes(fromNode) && currentEdge[i].includes(toNode)) {
-              hasIt = true;
+//             if (currentEdge[i].includes(fromNode) && currentEdge[i].includes(toNode)) {
+//               hasIt = true;
                  
-            } else {
-              // var findIt = finder(currentEdge[i])
-              // if(findIt){
-              //   hasIt = true
-              // } 
-            }
-          }
-        }
-      finder(currentEdge)  
-    }  
-   // } 
+//             } else {
 
-// finder(currentEdge)
+//             }
+//           }
+//         }
+//       finder(currentEdge)  
+//     }  
+// return hasIt; 
 
-return hasIt; 
-//     if (this.edge.length === 0 || this.edge.length === undefined){
-//       return false
-//     }
-// console.log('this is lin50',this.edge)
-//     for(var i =0; i<this.edge.length; i++){ //[3,4]
-//       if (this.edge[i].includes(fromNode) && this.edge[i].includes(toNode)) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     } 
+
+  if (this.edge.length === 0 || this.edge.length === undefined) {
+    return false;
+  }
+  
+  for (var i = 0; i < this.edge.length; i++) {
+    if (this.edge[i].includes(fromNode) && this.edge[i].includes(toNode)) {
+      return true;
+    } 
+  }
+  return false; 
 };
+
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
