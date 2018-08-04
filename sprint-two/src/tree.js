@@ -23,7 +23,6 @@ treeMethods.contains = function(target) {
    //check tree.value and see if === target -> return true
    //if not: look at children array. For each child, run finder
     if (tree.children.length === 0) {
-        //console.log(tree.children.value)
         if (tree.value === target) {
           return true;
         } else {
