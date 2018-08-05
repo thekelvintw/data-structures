@@ -9,8 +9,8 @@ HashTable.prototype.insert = function(k, v) {
 
   var index = getIndexBelowMaxForKey(k, this._limit);
 
-   
-  var innerArr = this._storage.get(index).set(index, []);
+  var bucket = this._storage.get(index);
+  var innerArr = bucket.set(index, []);
   innerArr.push([k, v]);
   
   
